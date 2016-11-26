@@ -91,3 +91,15 @@ public class Classifiers {
 
 }
 ```
+
+We can easily use different classifiers:
+```java
+  Classifier classifier = new NaiveBayes();
+```
+
+```java
+  Classifier classifier = new NearestNeighbour(1);
+```
+```java
+  Classifier classifier = new LogitBoost(10);
+```
