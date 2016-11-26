@@ -1,4 +1,4 @@
-In classifiers.java, use this to generate a input.txt:
+In classifiers.java, use this to generate a sample_array.txt:
 ```java
 package helloworld;
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class Classifiers {
 //		    System.out.println();
 //		    i++;
 //		}
-		File file = new File( "/Users/hyang027/Downloads/input.txt");
+		File file = new File( "/Users/hyang027/Downloads/sample_array.txt");
 
         DataSet dataSet = ARFFLoader.loadArffFile(file);
       //We specify '0' as the class we would like to make the target class. 
