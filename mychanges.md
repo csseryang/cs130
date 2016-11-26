@@ -29,7 +29,7 @@ public class Classifiers {
 
 transfer this csv to arff format by [link](http://ikuz.eu/csv2arff/)
 
-Then modity classifiers.java 
+Then modify classifiers.java accodring to [this example](https://github.com/EdwardRaff/JSAT/wiki/Training-and-using-a-classifier)
 ```java
 package helloworld;
 import java.io.File;
