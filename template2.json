@@ -101,7 +101,7 @@
 
     "subnet2Name": "Web",
     "subnet2Id": "[concat(variables('vnetId'), '/subnets/', variables('subnet2Name'))]",
-    "subnet2Prefix": "10.18.2.0/24",
+    "subnet2Prefix": "10.18.0.0/24",
     "subnet2PrivateAddress": "10.18.0.6",
 
     "publicIPAddressName": "[concat(uniquestring(resourceGroup().id), 'PublicIp')]",
