@@ -4,7 +4,7 @@
   "parameters": {
     "adminUsername": {
       "type": "string",
-      "defaultValue": "azureuser",
+      "defaultValue": "ucr_video",
       "metadata": {
         "description": "User name for the Virtual Machine."
       }
