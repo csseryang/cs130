@@ -92,7 +92,7 @@
 
     "vnetName": "vnet",
     "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]",
-    "addressPrefix": "10.0.0.0/16",
+    "addressPrefix": "10.0.0.0/8",
 
     "subnet1Name": "Frontend",
     "subnet1Id": "[concat(variables('vnetId'), '/subnets/', variables('subnet1Name'))]",
