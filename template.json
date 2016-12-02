@@ -17,14 +17,14 @@
     },
     "dnsLabelPrefix": {
       "type": "string",
-      "defaultValue": "router1",
+      "defaultValue": "router2",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
    "vmName": {
       "type": "string",
-      "defaultValue": "router1",
+      "defaultValue": "router2",
       "metadata": {
         "description": "Name of the VM"
       }
