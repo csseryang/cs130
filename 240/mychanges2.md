@@ -34,3 +34,13 @@ I thought something like this:
 ```
 
 But maybe just use the corssvalidation one!
+
+Carmen told me the reason:
+
+I should create a trainingtestdataset.java, using the same code..
+
+number of ngrams = 4096 for more_data/
+
+number of ngrams = 3704 for data/
+
+This will include vector dimensions not match
