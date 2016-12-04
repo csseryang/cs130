@@ -1,46 +1,65 @@
 
 How to set the training data set different from the testing?
 
-I thought something like this:
-
-```java
- File file = new File( "/Users/hyang027/Downloads/sample_array.txt");
-
-        File file2 = new File( "/Users/hyang027/Downloads/more_data.txt");
-        DataSet dataSet = ARFFLoader.loadArffFile(file2);
-
-        //We specify '0' as the class we would like to make the target class. 
-        ClassificationDataSet cDataSet = new ClassificationDataSet(dataSet, 0);
-
-        int errors = 0;
-        Classifier classifier = new NaiveBayes();
-        classifier.trainC(cDataSet);
-
-        for(int i = 0; i < dataSet.getSampleSize(); i++)
-        {
-            DataPoint dataPoint = cDataSet.getDataPoint(i);//It is important not to mix these up, the class has been removed from data points in 'cDataSet' 
-            int truth = cDataSet.getDataPointCategory(i);//We can grab the true category from the data set
-
-            //Categorical Results contains the probability estimates for each possible target class value. 
-            //Classifiers that do not support probability estimates will mark its prediction with total confidence. 
-            CategoricalResults predictionResults = classifier.classify(dataPoint);
-            int predicted = predictionResults.mostLikely();
-            if(predicted != truth)
-                errors++;
-            System.out.println( i + "| True Class: " + truth + ", Predicted: " + predicted + ", Confidence: " + predictionResults.getProb(predicted) );
-        }
-
-        System.out.println(errors + " errors were made, " + 100.0*errors/dataSet.getSampleSize() + "% error rate" );
-```
-
-But maybe just use the corssvalidation one!
+I had a first try but failed...
 
 Carmen told me the reason:
 
-I should create a trainingtestdataset.java, using the same code..
+I should create a trainingtestdataset.java, using the similiar code..
 
 number of ngrams = 4096 for more_data/
 
 number of ngrams = 3704 for data/
 
-This will include vector dimensions not match
+This will incur vector dimensions not match, so I add two things:
+
+
+### Reuse generalFrequencies from the training data:
+
+add in NavieBayesClassifier.java:
+
+```java
+   PreparingTrainingDataSet a = new PreparingTrainingDataSet();
+   ArrayList<ArrayList<Double>> trainingSet = a.run();
+   Hashtable<String,Integer> usefulTable= a.generalFrequencies;
+
+   testing dataset is sperated from training dataset
+   PreparingTestingDataSet b = new PreparingTestingDataSet(usefulTable);
+   ArrayList<ArrayList<Double>> testingSet = b.run();
+```
+
+
+### Preserve the keysets of generalFrequencies from the training data:
+
+```java
+  // preserver the keySets form the generalFrequencies from training data
+		generalFrequencies = (Hashtable)usefulTable.clone();
+		for(String key: generalFrequencies.keySet()){
+			generalFrequencies.put(key, 0);
+		}
+
+```
+
+### Discard features not appeared in the trainning data:
+
+ ```java
+    // added by Hui
+    // ignore features not included in training data
+    if( usefulTable.keySet().contains(newString) ){
+     if(systemCallTraceFreq.containsKey(newString)){
+      systemCallTraceFreq.put(newString, systemCallTraceFreq.get(newString)+1);
+     }else{
+      systemCallTraceFreq.put(newString, 1);	
+
+
+
+       if(generalFrequencies.containsKey(newString) ){
+        generalFrequencies.put(newString, generalFrequencies.get(newString)+1);
+       }else{
+        generalFrequencies.put(newString, 1);	
+       }
+
+     }
+    }
+ ```
+
