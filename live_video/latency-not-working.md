@@ -17,7 +17,7 @@ To delete rule:
 on c1(need to edit rffmpeg.sh first): `./rffmpeg.sh`
 
 
-To run tcpdump for 70s:
+To run tcpdump for 70s on `s1` in the same time:
 
 `sudo tcpdump -G 70 -W 1 -i eth0 -w [name].pcap`
       
