@@ -14,6 +14,9 @@ To delete rule:
 
 <h4>c1 uploads video to s1, I extracted RTT from the traffic, let's say 21ms.</h4>
 
+on c1(need to edit rffmpeg.sh first): `./rffmpeg.sh`
+
+
 To run tcpdump for 70s:
 
 `sudo tcpdump -G 70 -W 1 -i eth0 -w [name].pcap`
