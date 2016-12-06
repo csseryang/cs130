@@ -23,6 +23,8 @@ I copied the code to my own repository, Then change "multinicvm" to "router1". T
 I use the command:
 ```
 azure config mode arm
-azure group deployment create <my-resource-group> <my-deployment-name> --template-uri [my-github-url]
+azure group deployment create <my-resource-group> <my-deployment-name> --template-uri [my-github-json-url]
 
 ```
+
+where [my-github-json-url] is https://github.com/csseryang/cs130/blob/master/template.json
